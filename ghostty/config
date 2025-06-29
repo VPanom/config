@@ -1,0 +1,78 @@
+# Ghostty Configuration - Personalized for nvim workflow
+
+# ================================
+# THEME (Tokyo Night)
+# ================================
+theme = tokyonight_night
+
+# Font configuration
+font-family = "JetBrains Mono"
+font-size = 12
+
+# ================================
+# WINDOW BEHAVIOR
+# ================================
+window-decoration = true
+window-theme = dark
+window-padding-x = 8
+window-padding-y = 8
+
+# ================================
+# KEYBINDINGS (Space-based, hjkl navigation)
+# ================================
+
+# Tab management 
+keybind = ctrl+space>t=new_tab
+keybind = ctrl+space>w=close_tab
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>p=previous_tab
+
+# Split management 
+keybind = ctrl+space>v=new_split:right
+keybind = ctrl+space>s=new_split:down
+keybind = ctrl+space>x=close_surface
+
+# Navigation (hjkl style, matching nvim)
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>j=goto_split:down
+keybind = ctrl+space>k=goto_split:up
+keybind = ctrl+space>l=goto_split:right
+
+# Resize splits 
+keybind = ctrl+space>shift+h=resize_split:left,20
+keybind = ctrl+space>shift+j=resize_split:down,20
+keybind = ctrl+space>shift+k=resize_split:up,20
+keybind = ctrl+space>shift+l=resize_split:right,20
+
+# Config reload
+keybind = ctrl+space>r=reload_config
+
+# Toggle fullscreen split
+keybind = ctrl+space>z=toggle_split_zoom
+
+# ================================
+# CLIPBOARD & TERMINAL
+# ================================
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Terminal behavior
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# ================================
+# VISUAL ENHANCEMENTS
+# ================================
+window-inherit-working-directory = true
+working-directory = /home/vpanom
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Scrollback
+scrollback-limit = 10000
+
+# Fast updates
+minimum-contrast = 1.0

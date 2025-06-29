@@ -27,4 +27,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+
+-- Swedish keyboard friendly line navigation
+vim.keymap.set("n", "<leader>e", "$", { desc = "End of line" })          -- Space + e = end of line
+vim.keymap.set("n", "<leader>,", "^", { desc = "Beginning of line" })     -- Space + , = beginning (first non-whitespace)
+vim.keymap.set("n", "<leader>0", "0", { desc = "Start of line" })         -- Space + 0 = absolute start of line
  

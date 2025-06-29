@@ -22,6 +22,7 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'numToStr/Comment.nvim'
+Plug 'tpope/vim-fugitive'
 -- Theme
 Plug 'folke/tokyonight.nvim'
 

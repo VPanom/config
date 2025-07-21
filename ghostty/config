@@ -1,0 +1,52 @@
+# Ghostty Configuration - Personalized for nvim workflow
+
+# ================================
+# THEME (Tokyo Night)
+# ================================
+theme = tokyonight_night
+
+# Font configuration
+font-size = 15
+
+# ================================
+# WINDOW BEHAVIOR
+# ================================
+window-decoration = false
+window-theme = dark
+window-padding-x = 2
+window-padding-y = 2
+background-opacity = 0.86
+
+# Config reload
+keybind = ctrl+space>r=reload_config
+
+# Toggle fullscreen split
+keybind = ctrl+space>z=toggle_split_zoom
+
+
+# ================================
+# CLIPBOARD & TERMINAL
+# ================================
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Terminal behavior
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# ================================
+# VISUAL ENHANCEMENTS
+# ================================
+window-inherit-working-directory = true
+working-directory = /home/vpanom
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Scrollback
+scrollback-limit = 10000
+
+# Fast updates
+minimum-contrast = 1.0

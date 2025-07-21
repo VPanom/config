@@ -32,4 +32,9 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
 vim.keymap.set("n", "<leader>e", "$", { desc = "End of line" })          -- Space + e = end of line
 vim.keymap.set("n", "<leader>,", "^", { desc = "Beginning of line" })     -- Space + , = beginning (first non-whitespace)
 vim.keymap.set("n", "<leader>0", "0", { desc = "Start of line" })         -- Space + 0 = absolute start of line
+
+-- LSP Diagnostics keymaps
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+vim.keymap.set('n', '<leader>j', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'List all diagnostics' })
  

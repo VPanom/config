@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set('i', '<C-h>', '<C-w>')
 vim.keymap.set('n', '<F5>', ':tabnew<CR>')
 vim.keymap.set('n', '<F7>', ':tabn<CR>')

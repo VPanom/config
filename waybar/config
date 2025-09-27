@@ -1,0 +1,165 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 10,
+    "spacing": 8,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 10,
+    "margin-right": 10,
+    
+    "modules-left": [
+        "custom/spotify-prev",
+        "custom/spotify-play-pause", 
+        "custom/spotify-next",
+        "custom/spotify-info"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "pulseaudio", 
+        "network",
+        "battery",
+        "clock",
+        "tray",
+        "custom/notifications",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "urgent": "!",
+            "default": "○"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+
+    "custom/separator": {
+        "format": "━",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%H\n%M}",
+        "format-alt": "{:%m/%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "cpu": {
+        "format": "{usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{percentage}%"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°",
+        "format-icons": ["", "", ""]
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",
+        "format-charging": "{capacity}%",
+        "format-plugged": "{capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰤭",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}\n{volume}%",
+        "format-bluetooth": "󰂯\n{volume}%",
+        "format-bluetooth-muted": "󰂯\n󰝟",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+
+    "custom/notifications": {
+        "format": "🔔",
+        "tooltip": "Notifications",
+        "on-click": "swaync-client -t -sw"
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    "custom/spotify-prev": {
+        "format": "⏮",
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify previous"
+    },
+
+    "custom/spotify-play-pause": {
+        "format": "{}",
+        "exec": "playerctl --player=spotify status --format '{{emoji(status)}}' 2>/dev/null || echo '⏸'",
+        "exec-if": "pgrep spotify",
+        "on-click": "playerctl --player=spotify play-pause",
+        "interval": 1,
+        "format-icons": {
+            "Playing": "⏸",
+            "Paused": "▶"
+        }
+    },
+
+    "custom/spotify-next": {
+        "format": "⏭",
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify next"
+    },
+
+    "custom/spotify-info": {
+        "format": "{}",
+        "exec": "playerctl --player=spotify metadata --format '{{ title }} - {{ artist }}' 2>/dev/null || echo 'No music playing'",
+        "exec-if": "pgrep spotify",
+        "interval": 5,
+        "max-length": 50,
+        "tooltip": true,
+        "tooltip-format": "{}"
+    }
+}

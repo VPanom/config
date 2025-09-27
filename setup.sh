@@ -23,3 +23,17 @@ if [ -d ~/.config/ghostty ]; then
 fi
 
 ln -sf "$REPO_ROOT_PATH/ghostty" ~/.config/ghostty
+
+if [ -d ~/.config/hypr ]; then 
+	echo "Backing up hypr config to ~/.config/hypr.backup"
+	mv ~/.config/hypr ~/.config/hypr.backup
+fi
+
+ln -sf "$REPO_ROOT_PATH/hypr" ~/.config/hypr
+
+if [ -d ~/.config/waybar ]; then 
+	echo "Backing up waybar config to ~/.config/waybar.backup"
+	mv ~/.config/waybar ~/.config/waybar.backup
+fi
+
+ln -sf "$REPO_ROOT_PATH/waybar" ~/.config/waybar

@@ -15,7 +15,41 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { noremap = true, silent = true, buffer = bufnr }
         
         -- LSP keybindings
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        -- Open definition in a new tab
+        vim.keymap.set('n', 'gd', function()
+            -- Save the original handler
+            local original_handler = vim.lsp.handlers['textDocument/definition']
+
+            -- Temporarily override the handler to open in a new tab
+            vim.lsp.handlers['textDocument/definition'] = function(err, result, ctx, config)
+                -- Restore the original handler immediately
+                vim.lsp.handlers['textDocument/definition'] = original_handler
+
+                if err then
+                    vim.notify('Error getting definition: ' .. tostring(err), vim.log.levels.ERROR)
+                    return
+                end
+
+                if not result or vim.tbl_isempty(result) then
+                    vim.notify('Definition not found', vim.log.levels.WARN)
+                    return
+                end
+
+                -- Open a new tab
+                vim.cmd('tabnew')
+
+                -- Call the original handler which will open the file in the new tab
+                if original_handler then
+                    original_handler(err, result, ctx, config)
+                else
+                    -- Fallback to default behavior if no original handler
+                    vim.lsp.util.jump_to_location(result[1] or result, 'utf-8')
+                end
+            end
+
+            -- Request the definition (this will trigger our custom handler)
+            vim.lsp.buf.definition()
+        end, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
@@ -37,12 +71,17 @@ require("mason-lspconfig").setup({
     },
 })
 
--- Setup all installed servers
+-- Setup all installed servers with cmp capabilities
 local mason_lspconfig = require("mason-lspconfig")
 local installed_servers = mason_lspconfig.get_installed_servers()
 
+-- Get cmp capabilities if available (set in after/plugin/cmp.lua)
+local capabilities = _G.cmp_nvim_lsp_capabilities or vim.lsp.protocol.make_client_capabilities()
+
 for _, server_name in pairs(installed_servers) do
-    require("lspconfig")[server_name].setup({})
+    require("lspconfig")[server_name].setup({
+        capabilities = capabilities,
+    })
 end
 
 -- Auto-prompt for missing LSP servers
